@@ -1,0 +1,14 @@
+.card{
+    padding: 8px;
+    background: #282c34;
+}
+.textStyle{
+    color: aliceblue;
+    height:48px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    margin-bottom:12px;
+}
+.cardImage{
+    object-fit: contain;
+}

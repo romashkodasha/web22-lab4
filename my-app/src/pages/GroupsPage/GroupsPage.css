@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    padding: 20px 40px;
+    min-width: 800px;
+    background: url(https://4.downloader.disk.yandex.ru/preview/da6905cead845858804e7864e01a04b8a1e823171210ff47824d894009673019/inf/gZXF7uPOcV1YTDW0ipn7E__gNCvQbDuFdkR2xwYxRwa68uZLhU_G9FzFtx0eegoeW1wVH4y8b-3DafWIWOntkg%3D%3D?uid=580255991&filename=Lion_1_aom.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=580255991&tknv=v2&size=1898x942);
+}
+@media (max-width: 600px) {
+    .container{
+        min-width: auto;
+    }
+}
+
