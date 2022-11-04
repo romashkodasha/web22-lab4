@@ -1,16 +1,16 @@
 import React from 'react';
 import './CardPage.css';
-import GroupCard from "../../components/GroupCard/GroupCard";
-import {data} from "../GroupsPage/GroupsPage";
+import ShopCard from "../../components/GroupCard/ShopCard";
+import {data} from "../GroupsPage/ShopPage";
 import {Link, useParams} from "react-router-dom";
 const CardPage = () => {
     let {id} = useParams();
     const groupCard = data.find((card)=>card.id===Number(id))
     return (
     <div className="card">
-        <Link to="/groups"><span style={{margin:'0 12px', color: 'white'}}>ART OF MOTION</span></Link>
-        <Link to={`/groups/${id}`}><span style={{color: 'white'}}>/{groupCard.title}</span></Link>
-        <GroupCard{...groupCard}/>
+        <Link to="/groups" className="link"><span className="navigation">CLASSES</span></Link>
+        <Link to={`/groups/${id}`} className="link"><span className="navigation">/{groupCard.title}</span></Link>
+        <ShopCard{...groupCard}/>
         <span style={{margin:'0 12px', color: 'white'}}>{groupCard.time}</span>
     </div>
     )

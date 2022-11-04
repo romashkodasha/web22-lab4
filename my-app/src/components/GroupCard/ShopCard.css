@@ -1,0 +1,24 @@
+.card{
+    margin-bottom: 0px;
+    font-family: bebas_neue_cyrillicregular,sans-serif;
+}
+.infomk{
+    color: #fff;
+    width: 100%;
+    font-size: 22px;
+    line-height: 22px;
+}
+.link {
+    color: #151b1e;
+    text-decoration: none;
+    background-color: transparent;
+}
+.link:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+    color: antiquewhite; /* Цвет ссылки */
+    background: lightpink; /* Цвет фона */
+}
+.cardImage{
+    max-width: 300px;
+    margin-bottom: 5px;
+}

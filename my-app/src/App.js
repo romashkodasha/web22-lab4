@@ -1,21 +1,21 @@
 import {BrowserRouter, Route, Link, Switch, useParams} from "react-router-dom";
-import GroupsPage from "./pages/GroupsPage/GroupsPage";
+import ShopPage from "./pages/GroupsPage/ShopPage";
 import CardPage from "./pages/CardPage/CardPage";
+import StartPage from "./pages/StartPage/StartPage";
+import './App.css';
 import { Navbar, Container, Nav } from 'react-bootstrap'
 
 function App() {
     return (
-        <BrowserRouter basename="/" >
-                <Container>
-                    <Link to="/"><span style={{margin:'0 12px'}}>Стартовая страница</span></Link>
-                    <Link to="/groups"><span style={{margin:'0 12px'}}>Страница с карточками</span></Link>
-                </Container>
+        <BrowserRouter basename="/"  >
+                    <Link to="/" className="link1"><h1>DANCE CLASSES</h1></Link>
+                    <Link to="/groups"><h2 className="link2">view events</h2></Link>
                 <Switch>
                     <Route exact path="/">
-                        <h1>Студия танца ART OF MOTION</h1>
+                        <StartPage/>
                     </Route>
                     <Route path="/groups" exact={true}>
-                        <GroupsPage/>
+                        <ShopPage/>
                     </Route>
                     <Route path="/groups/:id" component={CardPage}>
                     </Route>
