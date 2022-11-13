@@ -1,5 +1,5 @@
 .card{
-    margin-bottom: 0px;
+    margin-bottom: 30px;
     font-family: bebas_neue_cyrillicregular,sans-serif;
 }
 .infomk{
@@ -10,6 +10,7 @@
 }
 .link {
     color: #151b1e;
+    font-size: 40px;
     text-decoration: none;
     background-color: transparent;
 }
@@ -17,6 +18,11 @@
     text-decoration: none; /* Убираем подчёркивание */
     color: antiquewhite; /* Цвет ссылки */
     background: lightpink; /* Цвет фона */
+}
+.info {
+    font-size: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .cardImage{
     max-width: 300px;

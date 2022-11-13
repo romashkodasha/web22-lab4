@@ -9,26 +9,60 @@ export const data = [{'title': 'gallaction', 'id': 1, 'sch': 'вторник, ч
     {'title': 'ArtVaden', 'id': 4, 'sch': 'понедельник, среда', 'time':'15:00-16:00', 'img':'https://sun9-26.userapi.com/impg/7dAzL58NbPzR2J4elTB-KO498WTyFBLo13R7RA/l1NxHNtwn1w.jpg?size=511x511&quality=95&sign=db73f21f244b9ec642675169b7002bd6&type=album'},
     {'title': 'Aidar&Dron', 'id': 5, 'sch': 'понедельник, среда', 'time':'17:00-18:00', 'img':'https://sun9-79.userapi.com/impg/B10o5PlHnaiJ58Nh3VlLxxkBQOb697jAChl4kg/k4ZM4t0PzMg.jpg?size=503x503&quality=95&sign=b453c2540993c5349e7957803d96306c&type=album'}];
 
-function ShopPage() {
-
-    return (
-        <div className="container">
-            <Link to="/groups" className="link"><span className="navigation">CLASSES</span></Link>
-            {!data.length ? <h1>К сожалению, пока ничего не найдено :(</h1>:
-                <Container className="mks">
-                <Row xs={4} md={4} className="g-4">
-                    {data.map((item, index)=>{
-                        return (
-                            <Col key={index}>
-                                <ShopCard {...item}/>
-                            </Col>
-                        )
-                    })}
-                </Row>
-                </Container>
-            }
-        </div>
-    );
+class ShopPage extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null,
+            isLoaded: false,
+            items: []
+        };
+    }
+    componentDidMount() {
+        fetch("http://127.0.0.1:8000/classes/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        items: result
+                    });
+                },
+                // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
+                // чтобы не перехватывать исключения из ошибок в самих компонентах.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+    render(){
+        const {error, isLoaded, items}=this.state;
+        if(error){
+            return <div>Ошибка: {error.message}</div>;
+        } else if (!isLoaded){
+            return <div>Загрузка...</div>;
+        } else {
+            return (
+                <div className="container">
+                    <Link to="/classes" className="link"><span className="navigation">CLASSES</span></Link>
+                        <Container className="mks">
+                            <Row xs={4} md={4} className="g-4">
+                                {items.map((item, index)=>{
+                                    return (
+                                        <Col key={index}>
+                                            <ShopCard {...item}/>
+                                        </Col>
+                                    )
+                                })}
+                            </Row>
+                        </Container>
+                </div>
+            )
+        }
+    }
 }
 
 export default ShopPage;

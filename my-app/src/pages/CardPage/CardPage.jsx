@@ -5,13 +5,13 @@ import {data} from "../GroupsPage/ShopPage";
 import {Link, useParams} from "react-router-dom";
 const CardPage = () => {
     let {id} = useParams();
-    const groupCard = data.find((card)=>card.id===Number(id))
+    const classCard = data.find((card)=>card.id===Number(id))
     return (
     <div className="card">
-        <Link to="/groups" className="link"><span className="navigation">CLASSES</span></Link>
-        <Link to={`/groups/${id}`} className="link"><span className="navigation">/{groupCard.title}</span></Link>
-        <ShopCard{...groupCard}/>
-        <span style={{margin:'0 12px', color: 'white'}}>{groupCard.time}</span>
+        <Link to="/classes" className="link"><span className="navigation">CLASSES</span></Link>
+        <Link to={`/classes/${id}`} className="link"><span className="navigation">/{classCard.title}</span></Link>
+        <div className="class"><ShopCard{...classCard}/></div>
+        <span style={{margin:'0 12px', color: 'white'}}>{classCard.time}</span>
     </div>
     )
 };

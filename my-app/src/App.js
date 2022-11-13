@@ -8,16 +8,16 @@ import { Navbar, Container, Nav } from 'react-bootstrap'
 function App() {
     return (
         <BrowserRouter basename="/"  >
-                    <Link to="/" className="link1"><h1>DANCE CLASSES</h1></Link>
-                    <Link to="/groups"><h2 className="link2">view events</h2></Link>
+                    <Link to="/" className="link1"><h1>dance classes</h1></Link>
+                    <Link to="/classes"><h2 className="link2">view events</h2></Link>
                 <Switch>
                     <Route exact path="/">
                         <StartPage/>
                     </Route>
-                    <Route path="/groups" exact={true}>
+                    <Route path="/classes" exact={true}>
                         <ShopPage/>
                     </Route>
-                    <Route path="/groups/:id" component={CardPage}>
+                    <Route path="/classes/:id" component={CardPage}>
                     </Route>
                 </Switch>
         </BrowserRouter>
