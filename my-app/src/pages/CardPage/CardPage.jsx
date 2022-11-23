@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './CardPage.css';
 import ShopCard from "../../components/GroupCard/ShopCard";
-import {data} from "../GroupsPage/ShopPage";
 import {Link, useParams} from "react-router-dom";
+import {Context} from "../../Context";
 const CardPage = () => {
     let {id} = useParams();
-    const classCard = data.find((card)=>card.id===Number(id))
+    const [context, setContext] = useContext(Context);
+    console.log(context);
+    const classCard = context.find((card)=>card.id===Number(id));
     return (
     <div className="card">
         <Link to="/classes" className="link"><span className="navigation">CLASSES</span></Link>
