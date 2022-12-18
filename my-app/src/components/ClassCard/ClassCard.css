@@ -1,0 +1,51 @@
+.card{
+    margin-bottom: 30px;
+    font-family: bebas_neue_cyrillicregular,sans-serif;
+}
+.infomk{
+    color: #fff;
+    width: 100%;
+    font-size: 22px;
+    line-height: 22px;
+}
+.link {
+    color: #151b1e;
+    font-size: 40px;
+    text-decoration: none;
+    background-color: transparent;
+}
+.link:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+    color: antiquewhite; /* Цвет ссылки */
+    background: lightpink; /* Цвет фона */
+}
+.info {
+    font-size: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.cardImage{
+    max-width: 300px;
+    margin-bottom: 5px;
+}
+.cardButton{
+    text-decoration: none;
+    width: 100%;
+    color: white;
+    background-color: #151b1e;
+    border-radius: 25px 25px 25px 25px;
+}
+.cardButton:hover {
+    border: 1px solid #0099cc;
+    background-color: #00aacc;
+    color: #ffffff;
+    /*padding: 5px 10px;*/
+    border-radius: 25px 25px 25px 25px;
+}
+
+.cardButton:disabled,
+.cardButton[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
