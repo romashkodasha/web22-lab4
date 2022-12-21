@@ -9,17 +9,32 @@ import React, {useCallback, useState} from "react";
 import CartPage from "./pages/CartPage";
 import {changeAuthorizedState} from "./store/reducers/auth";
 import {useDispatch, useSelector} from "react-redux";
+import AuthPage from "./pages/AuthPage";
+import {unAuthorizeAction} from "./store/actions/user";
+import RegistrationPage from "./pages/RegistrationPage";
 const App = () =>{
-    const { isAuthorized } = useSelector((store) => store.authReducer);
+    const { isAuthorized } = useSelector((store) => store.userReducer);
     const dispatch = useDispatch();
-    const handleChangeAuthState = useCallback(() => {
-        dispatch(changeAuthorizedState());
+    const handleLogout = useCallback(() => {
+        dispatch(unAuthorizeAction());
     }, [dispatch]);
+    // const handleChangeAuthState = useCallback(() => {
+    //     dispatch(changeAuthorizedState());
+    // }, [dispatch]);
     return (
                 <BrowserRouter basename="/"  >
                     <Link to="/classes" className="link1"><h1>dance classes</h1></Link>
                     <Link to="/purchase" className="cart" ><img className="logocart" src={'https://img.icons8.com/ios-glyphs/512/shopping-cart.png'} alt="cart" /></Link>
-                    <Button onClick={handleChangeAuthState} className="auth"><img className="logoauth" src={'https://img.icons8.com/ios-glyphs/512/user.png'} alt="auth" /></Button>
+                    {isAuthorized ? (
+                        <button onClick={handleLogout}>
+                            <img className="logoauth" src={'https://img.icons8.com/ios-glyphs/512/exit.png'} alt='auth'/>
+                        </button>
+                    ) : (
+                        <Link to="/auth" className="auth">
+                            <img className="logoauth" src={'https://img.icons8.com/ios-glyphs/512/user.png'} alt="auth"/>
+                        </Link>
+                    )}
+                    {/*<Link to="/auth" className="auth"><img className="logoauth" src={'https://img.icons8.com/ios-glyphs/512/user.png'} alt="auth" /></Link>*/}
                     <Switch>
                         <Route exact path="/">
                             <StartPage/>
@@ -30,8 +45,10 @@ const App = () =>{
                         <Route path="/classes/:id" component={ClassPage}>
                         </Route>
                         <Route path="/purchase">
-                            <CartPage/>
+                            {isAuthorized ? <CartPage/> :<AuthPage/>}
                         </Route>
+                        <Route path="/auth"> <AuthPage/> </Route>
+                        <Route path="/registration"><RegistrationPage/></Route>
                     </Switch>
                 </BrowserRouter>
     );

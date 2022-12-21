@@ -1,5 +1,10 @@
 import {deleteApiRequest, getApiRequest, postApiRequest} from "../index";
 
+export const PurchaseStatus =Object.freeze({
+    BOOKED: 'BOOKED',
+    PAID:'PAID',
+    PASSED:'PASSED'
+});
 export const getPurchase = async ()=>{
     return await getApiRequest('/purchase/' )
 }

@@ -16,7 +16,7 @@ import {getPurchaseAction} from "../../store/actions/purchase";
 
 const ShopPage = () => {
     const{classes, getPurchaseStatus, isLoading, getClassesStatus, getClassesPriceRangeStatus, classesPriceRange, getClassByNameStatus}=useSelector((store) =>store.classesReducer)
-    const { isAuthorized } = useSelector((store) => store.authReducer);
+    const { isAuthorized } = useSelector((store) => store.userReducer);
     const dispatch = useDispatch();
     const [searchValue, setSearchValue] = useState('');
     const [searchMinValue, setSearchMinValue] = useState('');

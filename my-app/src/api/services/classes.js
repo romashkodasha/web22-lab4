@@ -18,7 +18,7 @@ export const getClassByName = async (name) =>{
 }
 
 export const getClassesPriceRange = async (params)=>{
-    return await getApiRequest('/classes_price/',{
+    return await getApiRequest('/classes/price_range/',{
         params:{
             //TODO
         }

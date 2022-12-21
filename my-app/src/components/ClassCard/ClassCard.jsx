@@ -4,6 +4,7 @@ import './ClassCard.css';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getPurchaseAction, postPurchaseAction} from "../../store/actions/purchase";
+import {PurchaseStatus} from "../../api/services/purchase";
 
 function padTo2Digits(num) {
     return num.toString().padStart(2, '0');
@@ -19,7 +20,8 @@ function formatDate(date) {
 const ClassCard = ({id, trainer, date, price,img }) => {
     const {purchase,postPurchaseStatus, getPurchaseStatus}=useSelector((store)=>store.purchaseReducer)
     const {classes}=useSelector((store)=>store.classesReducer)
-    const { isAuthorized } = useSelector((store) => store.authReducer);
+    // const { isAuthorized } = useSelector((store) => store.authReducer);
+    const {user, isAuthorized} = useSelector((store)=>store.userReducer)
     const [isReserved, setReserved]=useState(false);
     const dispatch=useDispatch();
     useEffect(()=>{
@@ -30,18 +32,16 @@ const ClassCard = ({id, trainer, date, price,img }) => {
        if (Array.from(purchase).find(e => e.id_class === id))
            setReserved(true);
         //если id можно найти среди id_class в purchase, то ставим true
-        console.log(id);
-        console.log(isReserved);
     })
 
     const makeOrder =useCallback(()=>{
         setReserved(true)
          dispatch(postPurchaseAction({
              id_class:id,
-             id_student:1,
+             id_student: user.id,
              date_of_order: formatDate(new Date()),
              date_of_purchase: null,
-             status: 'Введен'
+             status: PurchaseStatus.BOOKED
          }))
      },[postPurchaseStatus,dispatch]);
     return <Card className="card">
