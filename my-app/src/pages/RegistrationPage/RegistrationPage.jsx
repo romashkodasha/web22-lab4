@@ -19,6 +19,7 @@ export const RegistrationPage= () => {
     const [registration, setRegistration] = useState(false);
     const onSubmit = useCallback(
         (values) => {
+            console.log('test');
             dispatch(registrationAction(values));
             setRegistration(true);
         },

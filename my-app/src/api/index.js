@@ -6,17 +6,20 @@ export const api = axios.create({
 export const getApiRequest = (link,body) =>
     api.get(link,body)
         .then((res)=>res.data)
-        .catch((err) => {console.log(err);
+        .catch((err) => {
+                throw JSON.stringify(err.response?.data);
         })
 
 export const postApiRequest = (link,body) =>
     api.post(link,body)
         .then((res)=>res.data)
-        .catch((err) => {console.log(err);
+        .catch((err) => {
+                throw JSON.stringify(err.response?.data);
         })
 
 export const deleteApiRequest = (link,body) =>
     api.delete(link,body)
         .then((res)=>res.data)
-        .catch((err) => {console.log(err);
+        .catch((err) => {
+        throw JSON.stringify(err.response?.data);
         })

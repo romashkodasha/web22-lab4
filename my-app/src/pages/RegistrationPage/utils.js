@@ -24,9 +24,5 @@ export const validateRegistrationForm = (values)=> {
         errors.birth_date = 'Пожалуйста укажите дату рождения';
     }
 
-    if (!values.sex) {
-        errors.sex = 'Пожалуйста укажите ваш пол';
-    }
-
     return errors;
 };
