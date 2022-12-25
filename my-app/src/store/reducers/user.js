@@ -1,11 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {authorizationAction, registrationAction, unAuthorizeAction} from '../actions/user';
+import {authorizationAction, getUsersAction, registrationAction, unAuthorizeAction} from '../actions/user';
 
 const initialState = {
     loginStatus: 'INITIAL',
     logoutStatus: 'INITIAL',
     registrationStatus: 'INITIAL',
     user: null,
+    users: null,
+    getUsersStatus:'initial',
     isAuthorized: false,
     error: null,
 };
@@ -60,6 +62,21 @@ const userSlice = createSlice({
                 state.logoutStatus = 'ERROR';
                 state.error = error;
             });
+        builder
+            .addCase(getUsersAction.pending, (state) => {
+                state.getUsersStatus = 'FETCHING';
+                state.error = null;
+            })
+            .addCase(getUsersAction.fulfilled, (state, {payload}) => {
+                state.getUsersStatus = 'FETCHED';
+                state.users = payload;
+                state.error = null;
+            })
+            .addCase(getUsersAction.rejected, (state, { error }) => {
+                state.getUsersStatus = 'ERROR';
+                state.error = error;
+            });
+
     },
 });
 

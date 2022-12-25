@@ -1,4 +1,4 @@
-import {getApiRequest} from "../index";
+import {getApiRequest, postApiRequest, patchApiRequest} from "../index";
 
 export const getClasses = async (params)=>{
     return await getApiRequest('/classes/',{
@@ -23,4 +23,13 @@ export const getClassesPriceRange = async (params)=>{
             //TODO
         }
     })
+}
+
+export const postClass = async (params)=>{
+    return await postApiRequest('/classes/', params);
+}
+
+export const patchClassById = async (params)=>{
+    const {id, ...param}=params;
+    return await patchApiRequest(`/classes/${id}/`, param);
 }

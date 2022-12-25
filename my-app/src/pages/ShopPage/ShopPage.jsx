@@ -48,7 +48,6 @@ const ShopPage = () => {
             dispatch(getClassesPriceRangeAction());
     },[getClassesPriceRangeStatus,dispatch])
 
-
     useEffect(()=>()=> {dispatch(resetPurchaseState());dispatch(resetClassesState());}, [dispatch]);
     return (
                 <div className="container">
@@ -67,6 +66,8 @@ const ShopPage = () => {
                                 })}
                             </Row>
                     </Container>
+                    {user? user.is_staff ? (<Link to="/edit" className="link"><span className="navigation">Добавить мастер-классы</span></Link>):(<></>):(<></>)}
+
                 </div>
         );
 }

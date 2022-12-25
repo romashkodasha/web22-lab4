@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     getPurchaseAction,
     postPurchaseAction,
-    deletePurchaseAction
+    deletePurchaseAction, patchPurchaseAction
 } from "../actions/purchase";
 
 
@@ -10,6 +10,7 @@ const initialState = {
     getPurchaseStatus: 'initial',
     postPurchaseStatus: 'initial',
     deletePurchaseStatus: 'initial',
+    updatePurchaseStatus: 'initial',
     purchase: [],
     error: null,
 };
@@ -55,11 +56,24 @@ const purchaseSlice = createSlice({
             })
             .addCase(deletePurchaseAction.fulfilled, (state, { payload }) => {
                 state.deletePurchaseStatus = 'fetched';
-                state.purchase = payload;
                 state.error = null;
             })
             .addCase(deletePurchaseAction.rejected, (state, { error }) => {
                 state.deletePurchaseStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(patchPurchaseAction.pending, (state) => {
+                state.updatePurchaseStatus = 'FETCHING';
+                state.error = null;
+            })
+            .addCase(patchPurchaseAction.fulfilled, (state, { payload }) => {
+                state.updatePurchaseStatus = 'FETCHED';
+                state.purchase = state.purchase.filter((purchase) => purchase.id !== payload.id);
+                state.error = null;
+            })
+            .addCase(patchPurchaseAction.rejected, (state, { error }) => {
+                state.updatePurchaseStatus = 'ERROR';
                 state.error = error;
             });
     },

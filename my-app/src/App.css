@@ -60,3 +60,8 @@ body {
 .auth:hover{
   background-color: lightblue;
 }
+.exit{
+  position: absolute;
+  top: 14px;
+  left: 15px;
+}

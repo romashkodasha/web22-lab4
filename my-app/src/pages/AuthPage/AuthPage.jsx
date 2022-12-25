@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {Link, NavLink} from 'react-router-dom';
 import { authorizationAction } from '../../store/actions/user';
 import './AuthPage.css';
+import {Redirect} from "react-router";
 
 export const AuthPage = () => {
     const dispatch = useDispatch();
@@ -16,8 +17,11 @@ export const AuthPage = () => {
         [dispatch],
     );
 
-    if (isAuthorized) {
-        return <NavLink to="/classes" />; //Navigate
+    if (isAuthorized && user?.is_staff) {
+        return <Redirect to="/" />; //Navigate
+    }
+    else if (isAuthorized && !user?.is_staff){
+        return <Redirect to="/classes" />;
     }
 
     return (

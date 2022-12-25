@@ -9,8 +9,11 @@ import {useDispatch, useSelector} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import {unAuthorizeAction} from "./store/actions/user";
 import RegistrationPage from "./pages/RegistrationPage";
+import CreateClassPage from "./pages/CreateClassPage";
+import EditPurchases from "./pages/EditPurchasesPage/EditPurchasesPage";
+import EditPurchasesPage from "./pages/EditPurchasesPage/EditPurchasesPage";
 const App = () =>{
-    const { isAuthorized } = useSelector((store) => store.userReducer);
+    const { isAuthorized,user } = useSelector((store) => store.userReducer);
     const dispatch = useDispatch();
     const handleLogout = useCallback(() => {
         dispatch(unAuthorizeAction());
@@ -20,7 +23,7 @@ const App = () =>{
                     <Link to="/classes" className="link1"><h1>dance classes</h1></Link>
                     <Link to="/purchase" className="cart" ><img className="logocart" src={'https://img.icons8.com/ios-glyphs/512/shopping-cart.png'} alt="cart" /></Link>
                     {isAuthorized ? (
-                        <button onClick={handleLogout}>
+                        <button onClick={handleLogout} className="exit">
                             <img className="logoauth" src={'https://img.icons8.com/ios-glyphs/512/exit.png'} alt='auth'/>
                         </button>
                     ) : (
@@ -28,7 +31,6 @@ const App = () =>{
                             <img className="logoauth" src={'https://img.icons8.com/ios-glyphs/512/user.png'} alt="auth"/>
                         </Link>
                     )}
-                    {/*<Link to="/auth" className="auth"><img className="logoauth" src={'https://img.icons8.com/ios-glyphs/512/user.png'} alt="auth" /></Link>*/}
                     <Switch>
                         <Route exact path="/">
                             <StartPage/>
@@ -40,6 +42,12 @@ const App = () =>{
                         </Route>
                         <Route path="/purchase">
                             {isAuthorized ? <CartPage/> :<AuthPage/>}
+                        </Route>
+                        <Route path="/createclass">
+                            {isAuthorized && user.is_staff ? <CreateClassPage/> :<AuthPage/>}
+                        </Route>
+                        <Route path="/editpurchases">
+                            {isAuthorized && user.is_staff ? <EditPurchasesPage/> :<AuthPage/>}
                         </Route>
                         <Route path="/auth"> <AuthPage/> </Route>
                         <Route path="/registration"><RegistrationPage/></Route>

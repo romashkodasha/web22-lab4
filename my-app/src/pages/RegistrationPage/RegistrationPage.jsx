@@ -1,16 +1,9 @@
 import React, { useCallback, useState } from 'react';
-
 import { Field, Form } from 'react-final-form';
-
 import { useDispatch } from 'react-redux';
-
 import { NavLink } from 'react-router-dom';
-
 import { validateRegistrationForm } from './utils';
-
 import { registrationAction } from '../../store/actions/user';
-
-
 import './RegistrationPage.css';
 
 export const RegistrationPage= () => {

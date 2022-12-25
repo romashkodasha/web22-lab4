@@ -1,9 +1,10 @@
 import { createSlice} from '@reduxjs/toolkit';
 import {
+    editClassAction,
     getClassByIdAction,
     getClassByNameAction,
     getClassesAction,
-    getClassesPriceRangeAction
+    getClassesPriceRangeAction, postClassAction
 } from '../actions/classes';
 
 
@@ -11,6 +12,8 @@ const initialState = {
     getClassesStatus: 'initial',
     getClassByIdStatus: 'initial',
     getClassesPriceRangeStatus: 'initial',
+    postClassStatus: 'initial',
+    deleteClassStatus: 'initial',
     classes: [],
     classesPriceRange: {},
     error: null,
@@ -79,6 +82,35 @@ const classesSlice = createSlice({
                 state.getClassesPriceRangeStatus = 'error';
                 state.error = error;
             });
+        builder
+            .addCase(postClassAction.pending, (state) => {
+                state.postClassStatus = 'fetching';
+                state.error = null;
+            })
+            .addCase(postClassAction.fulfilled, (state, { payload }) => {
+                state.postClassStatus = 'fetched';
+                state.classes = payload;
+                state.error = null;
+            })
+            .addCase(postClassAction.rejected, (state, { error }) => {
+                state.postClassStatus = 'error';
+                state.error = error;
+            });
+        builder
+            .addCase(editClassAction.pending, (state) => {
+                state.editClassStatus = 'fetching';
+                state.error = null;
+            })
+            .addCase(editClassAction.fulfilled, (state, { payload }) => {
+                state.editClassStatus = 'fetched';
+                state.classes = payload;
+                state.error = null;
+            })
+            .addCase(editClassAction.rejected, (state, { error }) => {
+                state.editClassStatus = 'error';
+                state.error = error;
+            });
+
     },
 });
 

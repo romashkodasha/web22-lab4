@@ -23,3 +23,10 @@ export const deleteApiRequest = (link,body) =>
         .catch((err) => {
         throw JSON.stringify(err.response?.data);
         })
+
+export const patchApiRequest = (link, body)=>
+    api.patch(link, body)
+        .then((res)=>res.data)
+        .catch((err)=>{
+            throw JSON.stringify(err.response?.data);
+        })
