@@ -21,7 +21,7 @@ export const AuthPage = () => {
     }
 
     return (
-        <div>
+        <div className="block">
             <div className="authentication">Авторизация</div>
             <Form onSubmit={onSubmit}>
                 {({ handleSubmit }) => (
@@ -32,13 +32,13 @@ export const AuthPage = () => {
                         <Field name="password">
                             {({ input }) => <input {...input} className="input" placeholder="Введите пароль"/>}
                         </Field>
-                        <button className="button" type="submit">
+                        <button className="login" type="submit">
                             Войти
                         </button>
                     </form>
                 )}
         </Form>
-    <Link to="/registration" className="button" type="button">
+    <Link to="/registration" className="registration" type="button">
         Регистрация
     </Link>
 </div>

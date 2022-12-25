@@ -1,8 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {deletePurchase, getPurchase, postPurchase} from "../../api/services/purchase";
 
-export const getPurchaseAction = createAsyncThunk('purchase/purchase',()=>{
-    return getPurchase();
+export const getPurchaseAction = createAsyncThunk('purchase/purchase',(params)=>{
+    return getPurchase(params);
 })
 
 export const postPurchaseAction = createAsyncThunk('purchase/purchasepost',(params)=>{

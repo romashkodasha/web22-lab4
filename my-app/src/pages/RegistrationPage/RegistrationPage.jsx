@@ -19,7 +19,6 @@ export const RegistrationPage= () => {
     const [registration, setRegistration] = useState(false);
     const onSubmit = useCallback(
         (values) => {
-            console.log('test');
             dispatch(registrationAction(values));
             setRegistration(true);
         },
@@ -30,7 +29,7 @@ export const RegistrationPage= () => {
         return <NavLink to="/auth" />;
     }
     return (
-        <div>
+        <div className="block">
             <div className='title'>Регистрация</div>
             <Form onSubmit={onSubmit} validate={validateRegistrationForm} >
                 {({ handleSubmit}) => (

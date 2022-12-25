@@ -17,14 +17,14 @@ const CartPage = () => {
         if (getClassesStatus ==='initial')
             dispatch(getClassesAction());
     },[getClassesStatus,dispatch])
-    // useEffect(()=>{
-    //     if (getPurchaseStatus==='initial')
-    //         console.log(user.id)
-    //         dispatch(getPurchaseAction({user_id: user.id}));
-    // },[getPurchaseStatus, dispatch])
+    useEffect(()=>{
+        if (getPurchaseStatus==='initial')
+        {console.log(user.id);
+            dispatch(getPurchaseAction({user_id: user.id}));}
+    },[getPurchaseStatus, dispatch])
     useLoader([getPurchaseStatus])
     console.log(purchase)
-    // useEffect( () => {dispatch(resetPurchaseState());}, [dispatch]);
+    useEffect( ()=>() => {dispatch(resetPurchaseState());}, [dispatch]);
     return (
         <div className="container">
             <Container className="mks">

@@ -1,0 +1,58 @@
+form input {
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    height: 35px;
+    border: 1px solid #F5C4AB;
+}
+.form{
+    display: block;
+    background: #6A5ACD;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 100%;
+    color: white;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+}
+.login {
+    width: 25%;
+    font-size: 14pt;
+    color: white;
+    background: #151b1e;
+    height: 55px;
+    padding: 10px;
+    border: 1px solid #F5C4AB;
+    border-radius: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.authentication{
+    font-family: Gotham Pro Medium,sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #151b1e;
+    font-size: xx-large;
+}
+.block{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.registration{
+    text-decoration: none;
+    font-family: Gotham Pro Medium,sans-serif;
+    color: #151b1e;
+    font-size: xx-large;
+    background-color: aliceblue;
+
+}
+.registration:hover {
+    text-decoration: none; /* Убираем подчёркивание */
+    color: antiquewhite; /* Цвет ссылки */
+    background: lightpink; /* Цвет фона */
+}

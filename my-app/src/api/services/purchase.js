@@ -6,7 +6,11 @@ export const PurchaseStatus =Object.freeze({
     PASSED:'PASSED'
 });
 export const getPurchase = async (params)=>{
-    return await getApiRequest('/purchase/', params )
+    return await getApiRequest('/purchase/', {
+        params:{
+            user_id:params?.user_id
+        }
+    })
 }
 
 export const postPurchase = async (params)=>{

@@ -25,13 +25,14 @@ const ShopPage = () => {
 
     useEffect(()=>{
         if (getPurchaseStatus==='initial' && user)
-            console.log(user.id);
-            dispatch(getPurchaseAction({user_id: user?.id}));
-    },[getPurchaseStatus, purchase, user, dispatch])
+        {console.log(user.id)
+            dispatch(getPurchaseAction({user_id: user?.id}));}
+    },[getPurchaseStatus, user, dispatch])
     const handleSearch = async () => {
         dispatch(getClassByNameAction(searchValue));
     }
     const handleSearchMinMax = useCallback(() => {
+        console.log(searchMinValue);
         dispatch(getClassesAction({minPrice: searchMinValue, maxPrice: searchMaxValue}))
         },[dispatch]
     );
