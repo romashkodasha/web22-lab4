@@ -10,11 +10,11 @@ export const getClasses = async (params)=>{
 }
 
 export const getClassById = async (id) =>{
-    return await getApiRequest(`/classes/${id}`)
+    return await getApiRequest(`/classes/${id}/`)
 }
 
 export const getClassByName = async (name) =>{
-    return await getApiRequest(`/classes?search=${name}`)
+    return await getApiRequest(`/classes?search=${name}/`)
 }
 
 export const getClassesPriceRange = async (params)=>{

@@ -17,6 +17,7 @@ function formatDate(date) {
     ].join('-');
 }
 
+
 const ClassCard = ({id, trainer, date, price,img }) => {
     const {purchase,postPurchaseStatus, getPurchaseStatus}=useSelector((store)=>store.purchaseReducer)
     const {classes}=useSelector((store)=>store.classesReducer)
@@ -24,10 +25,7 @@ const ClassCard = ({id, trainer, date, price,img }) => {
     const {user, isAuthorized} = useSelector((store)=>store.userReducer)
     const [isReserved, setReserved]=useState(false);
     const dispatch=useDispatch();
-    useEffect(()=>{
-        if (getPurchaseStatus==='initial')
-            dispatch(getPurchaseAction());
-    },[getPurchaseStatus, dispatch])
+
     useEffect(()=>{
        if (Array.from(purchase).find(e => e.id_class === id))
            setReserved(true);

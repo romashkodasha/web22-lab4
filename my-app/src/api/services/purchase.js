@@ -5,8 +5,8 @@ export const PurchaseStatus =Object.freeze({
     PAID:'PAID',
     PASSED:'PASSED'
 });
-export const getPurchase = async ()=>{
-    return await getApiRequest('/purchase/' )
+export const getPurchase = async (params)=>{
+    return await getApiRequest('/purchase/', params )
 }
 
 export const postPurchase = async (params)=>{

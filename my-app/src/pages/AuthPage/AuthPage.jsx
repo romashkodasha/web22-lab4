@@ -17,8 +17,7 @@ export const AuthPage = () => {
     );
 
     if (isAuthorized) {
-        console.log('test');
-        return <NavLink to="/" />; //Navigate
+        return <NavLink to="/classes" />; //Navigate
     }
 
     return (

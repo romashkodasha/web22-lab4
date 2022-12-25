@@ -11,17 +11,20 @@ import {getClassesAction} from "../../store/actions/classes";
 const CartPage = () => {
     const {purchase, isLoading,getPurchaseStatus} = useSelector((store) =>store.purchaseReducer)
     const {classes, getClassesStatus}=useSelector((store)=>store.classesReducer)
+    const {user} =useSelector((store)=>store.userReducer)
     const dispatch =useDispatch();
     useEffect(()=> {
         if (getClassesStatus ==='initial')
             dispatch(getClassesAction());
     },[getClassesStatus,dispatch])
-    useEffect(()=>{
-        if (getPurchaseStatus==='initial')
-            dispatch(getPurchaseAction());
-    },[getPurchaseStatus, dispatch])
+    // useEffect(()=>{
+    //     if (getPurchaseStatus==='initial')
+    //         console.log(user.id)
+    //         dispatch(getPurchaseAction({user_id: user.id}));
+    // },[getPurchaseStatus, dispatch])
     useLoader([getPurchaseStatus])
-    useEffect( () => {dispatch(resetPurchaseState());}, [dispatch]);
+    console.log(purchase)
+    // useEffect( () => {dispatch(resetPurchaseState());}, [dispatch]);
     return (
         <div className="container">
             <Container className="mks">

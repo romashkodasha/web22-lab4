@@ -3,11 +3,8 @@ import ShopPage from "./pages/ShopPage/ShopPage";
 import ClassPage from "./pages/ClassPage/ClassPage";
 import StartPage from "./pages/StartPage/StartPage";
 import './App.css';
-import {Navbar, Container, Nav, Button} from 'react-bootstrap'
 import React, {useCallback, useState} from "react";
-
 import CartPage from "./pages/CartPage";
-import {changeAuthorizedState} from "./store/reducers/auth";
 import {useDispatch, useSelector} from "react-redux";
 import AuthPage from "./pages/AuthPage";
 import {unAuthorizeAction} from "./store/actions/user";
@@ -18,9 +15,6 @@ const App = () =>{
     const handleLogout = useCallback(() => {
         dispatch(unAuthorizeAction());
     }, [dispatch]);
-    // const handleChangeAuthState = useCallback(() => {
-    //     dispatch(changeAuthorizedState());
-    // }, [dispatch]);
     return (
                 <BrowserRouter basename="/"  >
                     <Link to="/classes" className="link1"><h1>dance classes</h1></Link>

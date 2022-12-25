@@ -10,24 +10,28 @@ import {useLoader} from "../../hooks/useLoader";
 import {PageLoader} from "../../components/PageLoader";
 import {resetClassesState} from "../../store/reducers/classes";
 import InputFieldMinMax from "../../components/InputFieldMinMax/InputFieldMinMax";
-import {changeAuthorizedState} from "../../store/reducers/auth";
 import {getPurchaseAction} from "../../store/actions/purchase";
+import {resetPurchaseState} from "../../store/reducers/purchase";
 
 
 const ShopPage = () => {
-    const{classes, getPurchaseStatus, isLoading, getClassesStatus, getClassesPriceRangeStatus, classesPriceRange, getClassByNameStatus}=useSelector((store) =>store.classesReducer)
-    const { isAuthorized } = useSelector((store) => store.userReducer);
+    const{classes, isLoading, getClassesStatus, getClassesPriceRangeStatus, classesPriceRange, getClassByNameStatus}=useSelector((store) =>store.classesReducer)
     const dispatch = useDispatch();
+    const{purchase, getPurchaseStatus}=useSelector((store)=>store.purchaseReducer)
+    const {user, isAuthorized} = useSelector((store)=>store.userReducer)
     const [searchValue, setSearchValue] = useState('');
     const [searchMinValue, setSearchMinValue] = useState('');
     const [searchMaxValue, setSearchMaxValue] = useState('');
 
+    useEffect(()=>{
+        if (getPurchaseStatus==='initial' && user)
+            console.log(user.id);
+            dispatch(getPurchaseAction({user_id: user?.id}));
+    },[getPurchaseStatus, purchase, user, dispatch])
     const handleSearch = async () => {
         dispatch(getClassByNameAction(searchValue));
     }
     const handleSearchMinMax = useCallback(() => {
-        // if (searchMinValue<classesPriceRange.price_min) setSearchMinValue(classesPriceRange.price_min)
-        // if (searchMaxValue>classesPriceRange.price_max) setSearchMinValue(classesPriceRange.price_max)
         dispatch(getClassesAction({minPrice: searchMinValue, maxPrice: searchMaxValue}))
         },[dispatch]
     );
@@ -44,8 +48,7 @@ const ShopPage = () => {
     },[getClassesPriceRangeStatus,dispatch])
 
 
-
-    useEffect(() => {dispatch(resetClassesState());}, [dispatch]);
+    useEffect(()=>()=> {dispatch(resetPurchaseState());dispatch(resetClassesState());}, [dispatch]);
     return (
                 <div className="container">
                     <PageLoader/>
